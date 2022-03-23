@@ -1,0 +1,134 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+}
+
+h2 {
+    margin-top:0;
+}
+
+div {
+    font-family: Arial;
+    font-size: 12px;
+    color: white;
+}
+
+.main {
+    background-image: url(../images/tetris.png);
+    background-size: 95%;
+    background-repeat: no-repeat;
+    background-position: center center; 
+    background-attachment: fixed;
+    background-color: yellow;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: blue;
+    overflow: hidden;
+}
+
+.navbar a {
+    font-family: Arial;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 15px;
+    float: left;
+}
+
+.navbar a:hover {
+    background-color: lightgrey;
+    color: black;
+}
+
+/* For aligning text to the right in the navbar */
+.right{
+    float:right;
+}
+
+.feature-box {
+    border-style: dotted;
+    border-color: black;
+    font-family: Arial;
+    background-color: #c7c7c7;
+    width: 350px;
+    height: fit-content;
+    color: black;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 8px black;
+}   
+
+
+  
+  /* Full-width inputs */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set a style for all buttons */
+  button {
+    background-color: blue;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Pseudo-class hover style for buttons */
+  button:hover {
+    opacity: 0.5;
+  }
+  
+  /* Login cancel button */
+  .register {
+    width: auto;
+    padding: 10px;
+    background-color: tomato;
+    border-radius: 7px;
+
+  }
+  
+  /* Format avatar picture */
+  .imgcontainer {
+    color: black;
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  /* Avatar picture */
+  img.avatar {
+    width: 30%;
+    border-radius: 20%;
+    border-style: solid;
+    border-width: thick;
+    border-color: rgba(0, 0, 0, 0.503);
+  }
+  
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+    color: black;
+  }
+  
+  /* The "Forgot password" text */
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }

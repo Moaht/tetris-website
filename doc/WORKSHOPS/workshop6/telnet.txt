@@ -1,0 +1,24 @@
+GET /setcookie.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+
+GET /getcookie.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+
+GET /getcookie.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+Cookie: name=Matt; sname=Collison
+
+GET /setsession.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+
+GET /getsession.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+Cookie: PHPSESSID=258iun8j79f26iq67196ghg40d
+
+GET /unset.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+Cookie: PHPSESSID=258iun8j79f26iq67196ghg40d
+
+GET /destroy.php HTTP/1.1
+Host: ml-lab-4d78f073-aa49-4f0e-bce2-31e5254052c7.ukwest.cloudapp.azure.com
+Cookie: PHPSESSID=258iun8j79f26iq67196ghg40d

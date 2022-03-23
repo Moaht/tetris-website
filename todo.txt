@@ -1,0 +1,27 @@
+---------------------
+High Priority
+--------------------
+- Finish login page
+    - Check formatting in CSS - names etc
+    - Add in php and SQL
+    - Cookies + databse
+- Finish registration page
+    - Make it look bootiful and uniform with login page
+    - Add check if user is already logged in and redirect or display null page etc
+    - Add in php and SQL
+    - Cookies + databse
+- Finish leaderboards page
+    - Do summink (haven't read the spec yet)
+- Finish tetris page
+    - Do summink (haven't read the spec yet)
+
+
+--------------------
+Low Priority 
+--------------------
+
+- Do some fancy stuff with avatars
+    - Make new default ones to select with radio/drop-down
+    - Option to upload custom avatar (upload to usr avatar folder and store filepath in cookies)
+- Do some fancy stuff with forgot password? i.e. memorable word to reset
+- Do some fancy stuff with email server? :DDDDDDD

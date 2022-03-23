@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Changing the DOM</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+	<p>
+		Name: <input type="text" id="name"/>
+		Surname: <input type="text" id="surname"/>
+		<button>Add row</button>
+		<button>Clear table</button>
+	</p>
+	<hr>
+    <table id="table">
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr>
+    </table>
+</body>
+</html>
