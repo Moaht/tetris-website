@@ -21,7 +21,16 @@ Low Priority
 --------------------
 
 - Do some fancy stuff with avatars
-    - Make new default ones to select with radio/drop-down
+    - Create tetris-style question mark avatar for not-signed in picture
+    - Make more default ones to select with radio/drop-down
     - Option to upload custom avatar (upload to usr avatar folder and store filepath in cookies)
 - Do some fancy stuff with forgot password? i.e. memorable word to reset
 - Do some fancy stuff with email server? :DDDDDDD
+- Do some fancy stuff with password encrpytion in cookies etc
+    - Encyption/decryption across the internet
+    - Keep encrypted in the database
+- Implement "Remember me" functionality
+    - https://stackoverflow.com/questions/24744135/how-does-remember-me-feature-work-on-a-website
+- Make privacy policy page
+    - Generate from https://www.privacypolicies.com/blog/privacy-policy-template/
+- Make toast pop-ups in the feature box when user is logged-in to go though hints and how to play the game etc

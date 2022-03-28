@@ -1,52 +1,85 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>New user registration</title>
-<link rel="stylesheet" href="../css/styles.css">
-</head>
 
-<body>
+    <head>
+        <title>New user registration</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
 
-<!-- Top of page menu navigation bar -->
-<?php 
-require_once '../src/navbar.php'; 
-?>
+    <body>
 
+        <!-- Top of page menu navigation bar -->
+        <?php 
+        require_once '../src/navbar.php'; 
+        ?>
 
+        <div class="main">
 
+            <div class="registration-box">
 
-<div class="main">
-    <div class="feature-box">
+                <form action="action_page.php">
 
-        <form action="action_page.php" style="border:1px solid #ccc">
-        <div class="container">
-            <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr>
+                    <div class="container">
 
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
+                        <h1>Registration</h1>
+                        <p>Fields marked with an asterisk (*) are required fields.</p>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+                        <span class="regbox-left">
+                            <label for="Username"><b>Username*</b><br></label>
+                            <input type="text" placeholder="Username" name="Username" required>
+                            <br>
 
-            <label for="psw-repeat"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                            <label for="email"><b>Email</b><br></label>
+                            <input type="text" placeholder="Enter Email" name="email">
+                            <br>
 
-            <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-            </label>
+                            <label for="Password"><b>Password*</b><br></label>
+                            <input type="Password" placeholder="Enter Password" name="Password" required>
+                            <br>
 
-            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+                            <label for="Confirm Password"><b>Confirm Password*</b><br></label>
+                            <input type="Password" placeholder="Confirm Password" name="Confirm Password" required>
+                            <div style="padding-bottom: 20px" ></div>
+                        </span> 
 
-            <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Sign Up</button>
-            </div>
-        </div>
-        </form>
+                        <span class="right">
+                                <label for="First Name"><b>First Name*</b><br>
+                                </label>
+                                <input type="text" placeholder="First Name" name="First Name" required>
+                                <br>
+
+                                <label for="Last Name"><b>Last Name*</b><br>
+                                </label>
+                                <input type="text" placeholder="Last Name" name="Last Name" required>
+                                <br>
+                                
+                                <b>Choose avatar:</b><br><br>
+                                    <input type="radio" id="l-shape" checked="checked" name="avatar-select" value="l-shape" required>
+                                    <label for="l-shape"><img src="../images/L.png" alt="That LLLLovely 'ell' shape" class="avatar"></label>
+                                    <input type="radio" id="t-shape" name="avatar-select" value="t-shape" required>
+                                    <label for="t-shape"><img src="../images/T.png" alt="That TTTerrific 'tee' shape" class="avatar"></label>
+                                <br>
+                        </span>
+
+                    </div>
+                </form>
+                    <div class="center">
+                    <div style="padding-bottom: 20px" ></div>
+                    <b>Display scores on leaderboard?*</b>
+                    <input type="radio" id="yes-scores" checked="checked" name="leaderboards" value="yes-scores" required>
+                    <label for="yes-scores">Yes</label>
+                    <input type="radio" id="yes-scores" name="leaderboards" value="yes-scores" required>
+                    <label for="no-scores">No</label>
+
+                    <br>By creating an account you agree to our <a href="#">Terms & Privacy</a>.
+                    <br>
+                    <button type="submit" class="register-button">Register
+                    </button>
+                    </div>  
+            </div> 
+
         </div> 
-    </div> 
 
-</body>
+    </body>
+
 </html>

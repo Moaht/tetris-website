@@ -1,6 +1,6 @@
 html {
-    overflow: hidden;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -12,17 +12,21 @@ h2 {
     margin-top:0;
 }
 
+/* Style for all div */
 div {
     font-family: Arial;
     font-size: 12px;
-    color: white;
+}
+
+div a{
+    color:blue;
 }
 
 .main {
     background-image: url(../images/tetris.png);
     background-size: 95%;
     background-repeat: no-repeat;
-    background-position: center center; 
+    background-position: center; 
     background-attachment: fixed;
     background-color: yellow;
     height: 100vh;
@@ -34,6 +38,8 @@ div {
 .navbar {
     background-color: blue;
     overflow: hidden;
+    border-color: black;
+    border-style: dotted;
 }
 
 .navbar a {
@@ -51,35 +57,58 @@ div {
     color: black;
 }
 
-/* For aligning text to the right in the navbar */
+/* For aligning to the right */
 .right{
     float:right;
 }
 
-.feature-box {
+/* For aligning to the center */
+.center{
+  float:none;
+  text-align: center;
+}
+
+/* Grey box that has splash page */
+.splash-box {
     border-style: dotted;
     border-color: black;
     font-family: Arial;
     background-color: #c7c7c7;
     width: 350px;
-    height: fit-content;
     color: black;
     padding: 10px;
     border-radius: 30px;
     box-shadow: 5px 5px 8px black;
+}
+
+/* Grey box that has registration page */
+.registration-box {
+  border-style: dotted;
+  border-color: black;
+  font-family: Arial;
+  background-color: #c7c7c7;
+  width: fit-content;
+  color: black;
+  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 8px black;
 }   
 
+/* For aligning items to left in registration box */
+.regbox-left{
+  float:left;
+  padding-right: 30px;
+}
 
-  
-  /* Full-width inputs */
+  /* Size and padding for username and password fields */
   input[type=text], input[type=password] {
-    width: 100%;
+    width: 250px;
     padding: 10px;
-    margin: 8px 0;
+    margin: 7px 0px;
     box-sizing: border-box;
   }
-  
-  /* Set a style for all buttons */
+
+  /* Style for all buttons */
   button {
     background-color: blue;
     color: white;
@@ -106,15 +135,15 @@ div {
   }
   
   /* Format avatar picture */
-  .imgcontainer {
+  .avatar-container {
     color: black;
     text-align: center;
     margin: 24px 0 12px 0;
   }
   
   /* Avatar picture */
-  img.avatar {
-    width: 30%;
+  .avatar {
+    width: 110px;
     border-radius: 20%;
     border-style: solid;
     border-width: thick;
@@ -128,7 +157,15 @@ div {
   }
   
   /* The "Forgot password" text */
-  span.psw {
+  span.forgot-password {
     float: right;
     padding-top: 16px;
+  }
+
+  .register-button{
+    width: 30%;
+  }
+
+  .clearfix {
+    text-align: center;
   }
