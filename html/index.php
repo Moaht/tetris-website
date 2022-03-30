@@ -39,21 +39,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
-    $email_exists = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM Users WHERE email='$email'"));
+    $email_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE email='$email'"));
 
-    // Creating variables to carry error to HTML if an error is incurred
+    // Creating a variable to carry error to HTML if an error is incurred
     $user_error = 0;
-    $dup_email_error = 0;
-    $invalid_email = null;
-    if ($user_exists){$user_error = 1;}
-    if ($dup_email_exists){$dup_email_error = 1;}
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $invalid_email = 0;
-        } else {
-            $invalid_email = 0;
-        }
+    $email_error = 0;
+    
+    if ($user_exists){
+        $user_error = 1;
+        echo "USER EXISTS";
+    }
 
-    if (!$user_error && !$dup_email_error && !$invalid_email){
+    if ($email_exists){
+        echo "EMAIL EXISTS";
+        $email_error = 1;
+    }
+
+
+    //
+    if (!$user_error && !$email_error){
 
         // Taking data from query string and storing into a variable
         $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
@@ -107,17 +111,12 @@ mysqli_close($conn);
 
                         <!-- Checks if username and email exists and displays appropriate message -->
                         <?php
-
-                        if ($invalid_email){
-                            echo "<strong style='color: red'>*Invalid email format</strong><br><br>";
-                        } else {
-                            if ($user_error && $dup_email_error){
-                                echo "<strong style='color: red'>*Username and email are already associated with an account</strong><br><br>";
-                            } else if ($user_error){
-                                echo "<strong style='color: red'>*Username is already associated with an account</strong><br><br>";
-                            }else if($dup_email_error){
-                                echo "<strong style='color: red'>*Email is already associated with an account</strong><br><br>";
-                            }
+                        if ($user_error && $email_error){
+                            echo "<strong style='color: red'>*Username and email are already associated with an account</strong><br><br>";
+                        } else if ($user_error){
+                            echo "<strong style='color: red'>*Username is already associated with an account</strong><br><br>";
+                        }else if($email_error){
+                            echo "<strong style='color: red'>*Email is already associated with an account</strong><br><br>";
                         }
                         ?>
                         Don't have a user account? <a href="register.php">Register now</a>
