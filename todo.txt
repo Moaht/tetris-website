@@ -15,6 +15,10 @@ High Priority
 - Finish tetris page
     - Do summink (haven't read the spec yet)
 
+*****
+- Code-in defensive programming for avatars: i.e. if avatar value in database hasn't been set, then set and read a default of 1 (for example).
+    - Apply this to all custom (out-of-spec) database values
+
 
 --------------------
 Low Priority 

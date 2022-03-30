@@ -17,16 +17,18 @@
 
             <div class="registration-box">
 
-                <form action="action_page.php">
+                <form action="index.php" method="POST">
 
                     <div class="container">
 
+                        <!-- Title of registration form-->
                         <h1>Registration</h1>
                         <p>Fields marked with an asterisk (*) are required fields.</p>
 
+                        <!-- Left-hand side of registration form-->
                         <span class="regbox-left">
                             <label for="Username"><b>Username*</b><br></label>
-                            <input type="text" placeholder="Username" name="Username" required>
+                            <input type="text" placeholder="Username" name="username" required>
                             <br>
 
                             <label for="email"><b>Email</b><br></label>
@@ -34,48 +36,45 @@
                             <br>
 
                             <label for="Password"><b>Password*</b><br></label>
-                            <input type="Password" placeholder="Enter Password" name="Password" required>
+                            <input type="Password" placeholder="Enter Password" name="password" required>
                             <br>
 
                             <label for="Confirm Password"><b>Confirm Password*</b><br></label>
-                            <input type="Password" placeholder="Confirm Password" name="Confirm Password" required>
-                            <div style="padding-bottom: 20px" ></div>
+                            <input type="Password" placeholder="Confirm Password" name="confirm-pass" required>
                         </span> 
 
+                        <!-- Right-hand side of registration form-->
                         <span class="right">
-                                <label for="First Name"><b>First Name*</b><br>
-                                </label>
-                                <input type="text" placeholder="First Name" name="First Name" required>
-                                <br>
+                            <label for="First Name"><b>First Name*</b><br></label>
+                            <input type="text" placeholder="First Name" name="firstName" required>
+                            <br>
 
-                                <label for="Last Name"><b>Last Name*</b><br>
-                                </label>
-                                <input type="text" placeholder="Last Name" name="Last Name" required>
-                                <br>
-                                
-                                <b>Choose avatar:</b><br><br>
-                                    <input type="radio" id="l-shape" checked="checked" name="avatar-select" value="l-shape" required>
-                                    <label for="l-shape"><img src="../images/L.png" alt="That LLLLovely 'ell' shape" class="avatar"></label>
-                                    <input type="radio" id="t-shape" name="avatar-select" value="t-shape" required>
-                                    <label for="t-shape"><img src="../images/T.png" alt="That TTTerrific 'tee' shape" class="avatar"></label>
-                                <br>
+                            <label for="Last Name"><b>Last Name*</b><br></label>
+                            <input type="text" placeholder="Last Name" name="lastName" required>
+                            <br>
+                            
+                            <label for="avatar"><b>Choose avatar:</b></label><br><br>
+                            <input type="radio" id="l-shape" checked="checked" name="avatar" value="1" required>
+                            <label for="l-shape"><img src="../images/L.png" alt="That LLLLovely 'ell' shape" class="avatar"></label>
+                            <input type="radio" id="t-shape" name="avatar" value="2" required>
+                            <label for="t-shape"><img src="../images/T.png" alt="That TTTerrific 'tee' shape" class="avatar"></label>
                         </span>
 
-                    </div>
-                </form>
-                    <div class="center">
-                    <div style="padding-bottom: 20px" ></div>
-                    <b>Display scores on leaderboard?*</b>
-                    <input type="radio" id="yes-scores" checked="checked" name="leaderboards" value="yes-scores" required>
-                    <label for="yes-scores">Yes</label>
-                    <input type="radio" id="yes-scores" name="leaderboards" value="yes-scores" required>
-                    <label for="no-scores">No</label>
+                        <!-- Bottom & centralised section of registration form-->
+                        <div class="center" style="padding-top: 10px">
+                        <label for="display"><b>Display scores on leaderboard?*</b></label>
+                        <input type="radio" id="yes-scores" checked="checked" name="display" value="yes" required>
+                        <label for="yes-scores">Yes</label>
+                        <input type="radio" id="no-scores" name="display" value="no" required>
+                        <label for="no-scores">No</label>
+                        <br><br><b>By creating an account you agree to our <a href="#">Terms & Privacy</a></b><br>
+                        <button type="submit" class="register-button">Register</button>
+                        </div>
 
-                    <br>By creating an account you agree to our <a href="#">Terms & Privacy</a>.
-                    <br>
-                    <button type="submit" class="register-button">Register
-                    </button>
                     </div>  
+
+                </form>
+
             </div> 
 
         </div> 

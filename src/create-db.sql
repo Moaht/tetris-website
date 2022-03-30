@@ -6,6 +6,8 @@ CREATE TABLE Users (
     LastName varchar(255),
     Password varchar(255),
     Display int,
+    Email varchar(255),
+    Avatar int,
     PRIMARY KEY (Username)
 );
 

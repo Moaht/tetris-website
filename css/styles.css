@@ -64,8 +64,8 @@ div a{
 
 /* For aligning to the center */
 .center{
-  float:none;
   text-align: center;
+  clear:both;
 }
 
 /* Grey box that has splash page */
@@ -139,6 +139,7 @@ div a{
     color: black;
     text-align: center;
     margin: 24px 0 12px 0;
+    padding: 0px;
   }
   
   /* Avatar picture */
@@ -164,8 +165,4 @@ div a{
 
   .register-button{
     width: 30%;
-  }
-
-  .clearfix {
-    text-align: center;
   }
