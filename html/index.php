@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin'])){
     // Checks if it is necessary to process submitted form data
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        // Checks if user registration has been requested
+        // Checks if user REGISTRATION has been requested
         if (isset($_POST['register'])) {
 
             // Getting form data from registration page and storing in varaibles
@@ -54,9 +54,9 @@ if (!isset($_SESSION['loggedin'])){
 
             // Checks if any errors were raised and if all clear: creates a new account
             if (!$user_error && !$dup_email_error && !$invalid_email){
+                
                 // Taking data from query string and storing into a variable
                 $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
-
                 
                 // Using the opened connection and the query string we just made
                 if (mysqli_query($conn, $create_account)) {
@@ -65,14 +65,21 @@ if (!isset($_SESSION['loggedin'])){
                 echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
                 }
             }
+
+            // Creating a session for the newly created user
+            $_SESSION['loggedin'] = $username;
+            $_SESSION['start'] = time();
+            // Setting the time from start in which the session will expire - in seconds
+            $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
+
             // Closing database connection
             mysqli_close($conn);
         }
 
-        // Checks if login has been requested
+        // Checks if LOGIN has been requested
         if (isset($_POST['login'])) {
 
-            // Getting data from post and making variables
+            // Getting data from POST and making variables
             $username = $_POST["username"];
             $password = $_POST["password"];
 
@@ -110,15 +117,11 @@ if (!isset($_SESSION['loggedin'])){
                     // Setting the time from start in which the session will expire - in seconds
                     $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
 
-                    // redirect page and end script
-                    header('Location: tetris.php');
-                    die();
-
                 } else {
                     $user_pass_error = 1;
                 }
             } else {
-                $user_error = 1;
+                $user_pass_error = 1;
             }
 
             // Closing database connection
@@ -133,12 +136,7 @@ if (!isset($_SESSION['loggedin'])){
 
 ?>
 
-
-
-
-
-
-
+<!-- HTML page start -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -153,63 +151,17 @@ if (!isset($_SESSION['loggedin'])){
         require_once '../src/navbar.php'; 
         ?>
 
+        <!-- Main DIV -->
         <div class="main">
 
-            <div class="splash-box">
-
-                <!-- Login form start -->
-                <form action="index.php" method="POST">
-
-                    <!-- Shows user avatar. Not completely implemented yet. -->
-                    <div class="avatar-container">
-                        <img src="../images/T.png" alt="Avatar" class="avatar"><br>
-                        You're not signed in! <br><br>
-
-                        <!-- Checks username and email and displays appropriate error message -->
-                        <?php
-                            if($_SERVER["REQUEST_METHOD"] == "POST"){
-                                if (isset($_POST['register'])) {
-                                    if ($invalid_email){
-                                        echo "<strong style='color: red'>*Please enter a valid email</strong><br><br>";
-                                    } else {
-                                        if ($user_error && $dup_email_error){
-                                            echo "<strong style='color: red'>*Username and email are already associated with an account</strong><br><br>";
-                                        } else if ($user_error){
-                                            echo "<strong style='color: red'>*Username is already associated with an account</strong><br><br>";
-                                        }else if($dup_email_error){
-                                            echo "<strong style='color: red'>*Email is already associated with an account</strong>";
-                                        }
-                                    }
-                                }
-                                if (isset($_POST['login'])) {
-                                    // do nothing ..... for now
-                                }
-
-                            }
-                        ?>
-
-                        <span style="padding: 0px; font-size: 15px;">Don't have a user account? <a href="register.php">Register now</a></span>
-                    </div>
-
-                    <div class="container">
-
-                            <label for="username" style="float:left"><b>Username</b></label><br>
-                            <input type="text" placeholder="username" name="username" required>
-                            <br>
-                        
-                            <label for="password" style="float:left"><b>Password</b></label><br>
-                            <input type="password" placeholder="password" name="password" required>
-                            <button type="submit" name="login"><b>Login</b></button>
-                            
-                            <label for="remember" style="float:left">
-                            <input type="checkbox" checked="checked" name="remember">Remember me
-                            </label>
-                            <span class="forgot-password"><a href="#" >Forgot password?</a></span>
-
-                    </div>
-                </form>
-
-            </div>
+        <!-- Checks if user is logged in: if they are, then show welcome page; if not, then show login page -->
+        <?php        
+        if (isset($_SESSION['loggedin'])){
+            require_once '../src/logged-in.php'; 
+        } else {
+            require_once '../src/not-logged-in.php'; 
+        }
+        ?>
 
         </div> 
 
