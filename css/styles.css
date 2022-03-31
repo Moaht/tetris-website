@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Pixel";
+  src: url(../src/fonts/upheavtt.ttf  ) format("truetype");
+}
+
 html {
     height: 100%;
     overflow: hidden;

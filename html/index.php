@@ -142,6 +142,14 @@ if (!isset($_SESSION['loggedin'])){
     <head>
     <title>Welcome to TETRIS BITCHES! :></title>
     <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        @font-face {
+            font-family: "Pixel";
+            src: url(../src/fonts/upheavtt.ttf  ) format("truetype");
+        }
+    </style>
+
     </head>
 
     <body>
