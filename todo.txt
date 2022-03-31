@@ -19,6 +19,8 @@ High Priority
 - Finish tetris page
     - Do summink (haven't read the spec yet)
 
+-- TEST SESSIONS AGAINST DIFFERENT USERS WHEN DEPLOYED ON VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- CLEAN UP ECHOS etc
 
 - Go through and delete entries in CSS style file and if it doesn't break anything: keep it deleted.
 

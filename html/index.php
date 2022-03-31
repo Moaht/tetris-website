@@ -1,134 +1,135 @@
 <?php
 
+// Initialise/resume the session
 session_start();
 
-echo $_SESSION['loggedin'];
+// Check if the user is already logged in, if not then we allow POST form handling
+if (!isset($_SESSION['loggedin'])){
 
-?>
+    // Checks if it is necessary to process submitted form data
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+        // Checks if user registration has been requested
+        if (isset($_POST['register'])) {
 
+            // Getting form data from registration page and storing in varaibles
+            $username = $_POST["username"];
+            $email = $_POST["email"];
+            $firstName = $_POST["firstName"];
+            $lastName = $_POST["lastName"];
+            $password = $_POST["password"];
+            $avatar = $_POST["avatar"];
+            if ($_POST["display"] = "yes") {$display = 1;}
+            if ($_POST["display"] = "no")  {$display = 0;}
 
-<?php
+            // Connecting to the database
+            define('DB_SERVER', '127.0.0.1:3306');
+            define('DB_USERNAME', 'root');
+            define('DB_PASSWORD', '123');
+            define('DB_NAME', 'tetris');
 
-define('DB_SERVER', '127.0.0.1:3306');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '123');
-define('DB_NAME', 'tetris');
+            // Checking if database connection was successful - echo error if not
+            $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+            if($conn === false){
+                die("Error: Could not connect to the server " . mysqli_connect_error());
+            }
 
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Check if connection failed
-if($conn === false){
-    die("Error: Could not connect to the server " . mysqli_connect_error());
-}
- 
-// // Initialize the session
-// session_start([
-//     'use_only_cookies' => 1,
-//     'cookie_lifetime' => 0,
-//     'cookie_secure' => 1,
-//   ]);
- 
-// // Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: index.php");
-//     exit;
-// }
+            // Creating variables to check if user and email already exists in the database
+            $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
+            $email_exists = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM Users WHERE email='$email'"));
 
-// Checks if it is necessary to process submitted form data
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+            // Creating variables to carry error to HTML if an error is incurred
+            $user_error = 0;
+            $dup_email_error = 0;
+            $invalid_email = 0;
 
-    // Checks if user registration has been requested
-    if (isset($_POST['register'])) {
+            // Setting error variables based on whether the queries were successful or not
+            if ($user_exists)  {$user_error = 1;}
+            if ($email_exists) {$dup_email_error = 1;}
 
-        // Getting form data from registration page and storing in varaibles
-        $username = $_POST["username"];
-        $email = $_POST["email"];
-        $firstName = $_POST["firstName"];
-        $lastName = $_POST["lastName"];
-        $password = $_POST["password"];
-        $avatar = $_POST["avatar"];
-        if ($_POST["display"] = "yes") {$display = 1;}
-        if ($_POST["display"] = "no")  {$display = 0;}
+            // Checks if email is valid (and allows a null/empty email ONCE so that tests may pass)
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !($email == null)){
+                $invalid_email = 1;
+            }
 
-        // Creating variables to check if user and email already exists in the database
-        $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
-        $email_exists = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM Users WHERE email='$email'"));
+            // Checks if any errors were raised and if all clear: creates a new account
+            if (!$user_error && !$dup_email_error && !$invalid_email){
+                // Taking data from query string and storing into a variable
+                $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
 
-        // Creating variables to carry error to HTML if an error is incurred
-        $user_error = 0;
-        $dup_email_error = 0;
-        $invalid_email = 0;
-
-        // Setting error variables based on whether the queries were successful or not
-        if ($user_exists)  {$user_error = 1;}
-        if ($email_exists) {$dup_email_error = 1;}
-
-        // Checks if email is valid (and allows a null/empty email ONCE so that tests may pass)
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !($email == null)){
-            $invalid_email = 1;
+                
+                // Using the opened connection and the query string we just made
+                if (mysqli_query($conn, $create_account)) {
+                echo "New record created successfully";
+                } else {
+                echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
+                }
+            }
+            // Closing database connection
+            mysqli_close($conn);
         }
 
-        // Checks if any errors were raised and if all clear: creates a new account
-        if (!$user_error && !$dup_email_error && !$invalid_email){
-            // Taking data from query string and storing into a variable
-            $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
+        // Checks if login has been requested
+        if (isset($_POST['login'])) {
 
-            // Using the opened connection and the query string we just made
-            if (mysqli_query($conn, $create_account)) {
-            echo "New record created successfully";
-            } else {
-            echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
+            // Getting data from post and making variables
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+
+            // Connecting to the database
+            define('DB_SERVER', '127.0.0.1:3306');
+            define('DB_USERNAME', 'root');
+            define('DB_PASSWORD', '123');
+            define('DB_NAME', 'tetris');
+
+            // Checking if database connection was successful - echo error if not
+            $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+            if($conn === false){
+                die("Error: Could not connect to the server " . mysqli_connect_error());
             }
+
+            // Checking if user account exists
+            $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
+
+            // Creating error variables
+            $user_error = 0;
+            $user_pass_error = 0;
+
+            if ($user_exists){
+
+                // Putting relevant found user account details into an array called $row
+                $user_lookup = mysqli_query($conn, "SELECT username, password FROM Users WHERE username='$username'");
+                $row = mysqli_fetch_array($user_lookup, MYSQLI_ASSOC);
+
+                // If the details entered in the login form match corresponding 
+                // database values, a session is created. Else an error is raised
+                if (($row["username"] == $username) && ($row["password"] == $password)) {
+
+                    $_SESSION['loggedin'] = $row["username"];
+                    $_SESSION['start'] = time();
+                    // Setting the time from start in which the session will expire - in seconds
+                    $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
+
+                    // redirect page and end script
+                    header('Location: tetris.php');
+                    die();
+
+                } else {
+                    $user_pass_error = 1;
+                }
+            } else {
+                $user_error = 1;
+            }
+
+            // Closing database connection
+            mysqli_close($conn);
         }
     }
 
-    // Checks if login has been requested
-    if (isset($_POST['login'])) {
-
-        // Getting data from post and making variables
-        $username = $_POST["username"];
-        $password = $_POST["password"];
-
-        // Checking if user account exists
-        $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
-
-        // Creating error variables
-        $user_error = 0;
-        $user_pass_error = 0;
-
-        if ($user_exists){
-
-            // Putting relevant found user account details into an array called $row
-            $user_lookup = mysqli_query($conn, "SELECT username, password FROM Users WHERE username='$username'");
-            $row = mysqli_fetch_array($user_lookup, MYSQLI_ASSOC);
-
-            // If the details entered in the login form match corresponding 
-            // database values, a session is created. Else an error is raised
-            if (($row["username"] == $username) && ($row["password"] == $password)) {
-
-                $_SESSION['loggedin'] = $row["username"];
-                $_SESSION['start'] = time();
-                // Setting the time from start in which the session will expire - in seconds
-                $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
-
-                // redirect page and end script
-                header('Location: tetris.php');
-                die();
-
-            } else {
-                $user_pass_error = 1;
-            }
-        } else {
-            $user_error = 1;
-        }
+// At this point we have found a user session and we set the necessary variables
+} else {
+    echo "found session";
     }
-
-
-
-
-}
-mysqli_close($conn);
 
 ?>
 
