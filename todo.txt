@@ -1,6 +1,8 @@
 ---------------------
 High Priority
 --------------------
+- Make navbar links buttons with the names specified in the spec
+
 - Finish login page
     - Check formatting in CSS - names etc
     - Add in php and SQL
@@ -10,15 +12,15 @@ High Priority
     - Add check if user is already logged in and redirect or display null page etc
     - Add in php and SQL
     - Cookies + databse
+
 - Finish leaderboards page
     - Do summink (haven't read the spec yet)
+
 - Finish tetris page
     - Do summink (haven't read the spec yet)
 
-*****
-- Code-in defensive programming for avatars: i.e. if avatar value in database hasn't been set, then set and read a default of 1 (for example).
-    - Apply this to all custom (out-of-spec) database values
 
+- Go through and delete entries in CSS style file and if it doesn't break anything: keep it deleted.
 
 --------------------
 Low Priority 

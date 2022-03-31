@@ -31,7 +31,7 @@
                             <input type="text" placeholder="Username" name="username" required>
                             <br>
 
-                            <label for="email"><b>Email</b><br></label>
+                            <label for="email"><b>Email*</b><br></label>
                             <input type="text" placeholder="Enter Email" name="email">
                             <br>
 
@@ -68,7 +68,7 @@
                         <input type="radio" id="no-scores" name="display" value="no" required>
                         <label for="no-scores">No</label>
                         <br><br><b>By creating an account you agree to our <a href="#">Terms & Privacy</a></b><br>
-                        <button type="submit" class="register-button">Register</button>
+                        <button type="submit" class="register-button" name="register">Register</button>
                         </div>
 
                     </div>  

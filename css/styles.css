@@ -33,6 +33,7 @@ div a{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .navbar {
@@ -74,9 +75,9 @@ div a{
     border-color: black;
     font-family: Arial;
     background-color: #c7c7c7;
-    width: 350px;
+    width: 300px;
     color: black;
-    padding: 10px;
+    padding: 15px;
     border-radius: 30px;
     box-shadow: 5px 5px 8px black;
 }
@@ -92,6 +93,7 @@ div a{
   padding: 10px;
   border-radius: 30px;
   box-shadow: 5px 5px 8px black;
+  text-align: left;
 }   
 
 /* For aligning items to left in registration box */
@@ -160,7 +162,7 @@ div a{
   /* The "Forgot password" text */
   span.forgot-password {
     float: right;
-    padding-top: 16px;
+    padding-top: 0px;
   }
 
   .register-button{

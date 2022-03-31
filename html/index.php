@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+
+echo $_SESSION['loggedin'];
+
+?>
+
+
+
+<?php
+
 define('DB_SERVER', '127.0.0.1:3306');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '123');
@@ -25,54 +35,99 @@ if($conn === false){
 //     exit;
 // }
 
-// Processing form data when form is submitted
+// Checks if it is necessary to process submitted form data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
-    $username = $_REQUEST["username"];
-    $email = $_REQUEST["email"];
-    $firstName = $_REQUEST["firstName"];
-    $lastName = $_REQUEST["lastName"];
-    $password = $_REQUEST["password"];
-    $avatar = $_REQUEST["avatar"];
-    if ($_REQUEST["display"] = "yes") {$display = 1;}
-    if ($_REQUEST["display"] = "no")  {$display = 0;}
 
+    // Checks if user registration has been requested
+    if (isset($_POST['register'])) {
 
-    $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
-    $email_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE email='$email'"));
+        // Getting form data from registration page and storing in varaibles
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $firstName = $_POST["firstName"];
+        $lastName = $_POST["lastName"];
+        $password = $_POST["password"];
+        $avatar = $_POST["avatar"];
+        if ($_POST["display"] = "yes") {$display = 1;}
+        if ($_POST["display"] = "no")  {$display = 0;}
 
-    // Creating a variable to carry error to HTML if an error is incurred
-    $user_error = 0;
-    $email_error = 0;
-    
-    if ($user_exists){
-        $user_error = 1;
-        echo "USER EXISTS";
-    }
+        // Creating variables to check if user and email already exists in the database
+        $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
+        $email_exists = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM Users WHERE email='$email'"));
 
-    if ($email_exists){
-        echo "EMAIL EXISTS";
-        $email_error = 1;
-    }
+        // Creating variables to carry error to HTML if an error is incurred
+        $user_error = 0;
+        $dup_email_error = 0;
+        $invalid_email = 0;
 
+        // Setting error variables based on whether the queries were successful or not
+        if ($user_exists)  {$user_error = 1;}
+        if ($email_exists) {$dup_email_error = 1;}
 
-    //
-    if (!$user_error && !$email_error){
+        // Checks if email is valid (and allows a null/empty email ONCE so that tests may pass)
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !($email == null)){
+            $invalid_email = 1;
+        }
 
-        // Taking data from query string and storing into a variable
-        $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
+        // Checks if any errors were raised and if all clear: creates a new account
+        if (!$user_error && !$dup_email_error && !$invalid_email){
+            // Taking data from query string and storing into a variable
+            $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
 
-        // Using the opened connection and the query string we just made
-        if (mysqli_query($conn, $create_account)) {
-        echo "New record created successfully";
-        } else {
-        echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
+            // Using the opened connection and the query string we just made
+            if (mysqli_query($conn, $create_account)) {
+            echo "New record created successfully";
+            } else {
+            echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
+            }
         }
     }
 
+    // Checks if login has been requested
+    if (isset($_POST['login'])) {
+
+        // Getting data from post and making variables
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        // Checking if user account exists
+        $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
+
+        // Creating error variables
+        $user_error = 0;
+        $user_pass_error = 0;
+
+        if ($user_exists){
+
+            // Putting relevant found user account details into an array called $row
+            $user_lookup = mysqli_query($conn, "SELECT username, password FROM Users WHERE username='$username'");
+            $row = mysqli_fetch_array($user_lookup, MYSQLI_ASSOC);
+
+            // If the details entered in the login form match corresponding 
+            // database values, a session is created. Else an error is raised
+            if (($row["username"] == $username) && ($row["password"] == $password)) {
+
+                $_SESSION['loggedin'] = $row["username"];
+                $_SESSION['start'] = time();
+                // Setting the time from start in which the session will expire - in seconds
+                $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
+
+                // redirect page and end script
+                header('Location: tetris.php');
+                die();
+
+            } else {
+                $user_pass_error = 1;
+            }
+        } else {
+            $user_error = 1;
+        }
+    }
+
+
+
+
 }
-
-
 mysqli_close($conn);
 
 ?>
@@ -102,44 +157,54 @@ mysqli_close($conn);
             <div class="splash-box">
 
                 <!-- Login form start -->
-                <form action="action_page.php" method="post">
+                <form action="index.php" method="POST">
 
                     <!-- Shows user avatar. Not completely implemented yet. -->
                     <div class="avatar-container">
                         <img src="../images/T.png" alt="Avatar" class="avatar"><br>
                         You're not signed in! <br><br>
 
-                        <!-- Checks if username and email exists and displays appropriate message -->
+                        <!-- Checks username and email and displays appropriate error message -->
                         <?php
-                        if ($user_error && $email_error){
-                            echo "<strong style='color: red'>*Username and email are already associated with an account</strong><br><br>";
-                        } else if ($user_error){
-                            echo "<strong style='color: red'>*Username is already associated with an account</strong><br><br>";
-                        }else if($email_error){
-                            echo "<strong style='color: red'>*Email is already associated with an account</strong><br><br>";
-                        }
+                            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                                if (isset($_POST['register'])) {
+                                    if ($invalid_email){
+                                        echo "<strong style='color: red'>*Please enter a valid email</strong><br><br>";
+                                    } else {
+                                        if ($user_error && $dup_email_error){
+                                            echo "<strong style='color: red'>*Username and email are already associated with an account</strong><br><br>";
+                                        } else if ($user_error){
+                                            echo "<strong style='color: red'>*Username is already associated with an account</strong><br><br>";
+                                        }else if($dup_email_error){
+                                            echo "<strong style='color: red'>*Email is already associated with an account</strong>";
+                                        }
+                                    }
+                                }
+                                if (isset($_POST['login'])) {
+                                    // do nothing ..... for now
+                                }
+
+                            }
                         ?>
-                        Don't have a user account? <a href="register.php">Register now</a>
-                    </div>
 
-                    <div class="container" style="padding-bottom: 0px">
-                        <label for="uname"><b>Username</b></label><br>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
-                        <br>
-
-                        <label for="password"><b>Password</b></label><br>
-                        <input type="password" placeholder="Enter Password" name="password" required>
-
-                        <button type="submit"><b>Login</b></button>
-                        <label for="remember">
-                        <input type="checkbox" checked="checked" name="remember">Remember me
-                        </label>
-                        <br>
+                        <span style="padding: 0px; font-size: 15px;">Don't have a user account? <a href="register.php">Register now</a></span>
                     </div>
 
                     <div class="container">
-                        <button type="button" class="register"><b>Register</b></button>
-                        <span class="forgot-password"><a href="#" >Forgot password?</a></span>
+
+                            <label for="username" style="float:left"><b>Username</b></label><br>
+                            <input type="text" placeholder="username" name="username" required>
+                            <br>
+                        
+                            <label for="password" style="float:left"><b>Password</b></label><br>
+                            <input type="password" placeholder="password" name="password" required>
+                            <button type="submit" name="login"><b>Login</b></button>
+                            
+                            <label for="remember" style="float:left">
+                            <input type="checkbox" checked="checked" name="remember">Remember me
+                            </label>
+                            <span class="forgot-password"><a href="#" >Forgot password?</a></span>
+
                     </div>
                 </form>
 
