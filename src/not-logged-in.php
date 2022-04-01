@@ -20,7 +20,7 @@
                         } else if ($user_error){
                             echo "<strong style='color: red'>*Username is already associated with an account</strong><br><br>";
                         }else if($dup_email_error){
-                            echo "<strong style='color: red'>*Email is already associated with an account</strong>";
+                            echo "<strong style='color: red'>*Email is already associated with an account</strong><br><br>";
                         }
                     }
                 }

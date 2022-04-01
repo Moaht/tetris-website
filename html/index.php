@@ -64,13 +64,14 @@ if (!isset($_SESSION['loggedin'])){
                 } else {
                 echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
                 }
-            }
 
-            // Creating a session for the newly created user
-            $_SESSION['loggedin'] = $username;
-            $_SESSION['start'] = time();
-            // Setting the time from start in which the session will expire - in seconds
-            $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
+                // Creating a session for the newly created user
+                $_SESSION['loggedin'] = $username;
+                $_SESSION['start'] = time();
+                // Setting the time from start in which the session will expire - in seconds
+                $_SESSION['expire'] = $_SESSION['start'] + (60 * 60);
+
+            }
 
             // Closing database connection
             mysqli_close($conn);
@@ -131,7 +132,7 @@ if (!isset($_SESSION['loggedin'])){
 
 // At this point we have found a user session and we set the necessary variables
 } else {
-    echo "found session";
+    // echo "found session";
     }
 
 ?>
@@ -146,7 +147,7 @@ if (!isset($_SESSION['loggedin'])){
     <style>
         @font-face {
             font-family: "Pixel";
-            src: url(../src/fonts/upheavtt.ttf  ) format("truetype");
+            src: url(../src/fonts/upheavtt.ttf) format("truetype");
         }
     </style>
 

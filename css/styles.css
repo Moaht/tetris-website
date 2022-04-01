@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Pixel";
-  src: url(../src/fonts/upheavtt.ttf  ) format("truetype");
+  src: url(../src/fonts/upheavtt.ttf) format("truetype");
 }
 
 html {
@@ -11,6 +11,7 @@ html {
 body {
     background-color: black;
     margin: 0;
+    height: 100%
 }
 
 h2 {
@@ -85,6 +86,7 @@ div a{
     padding: 15px;
     border-radius: 30px;
     box-shadow: 5px 5px 8px black;
+    margin-top: -70px;
 }
 
 /* Grey box that has splash page */
@@ -98,6 +100,7 @@ div a{
   padding: 15px;
   border-radius: 30px;
   box-shadow: 5px 5px 8px black;
+  margin-top: -70px;
 }
 
 /* Grey box that has registration page */
@@ -112,7 +115,15 @@ div a{
   border-radius: 30px;
   box-shadow: 5px 5px 8px black;
   text-align: left;
+  margin-top: -70px;
 }   
+
+/* The div that contains the tetris game */
+.tetris {
+  background-image: url(../images/tetris-grid-bg.png);
+  background-size: auto 600px;
+  height: 600px;
+}
 
 /* For aligning items to left in registration box */
 .regbox-left{
@@ -120,69 +131,91 @@ div a{
   padding-right: 30px;
 }
 
-  /* Size and padding for username and password fields */
-  input[type=text], input[type=password] {
-    width: 250px;
-    padding: 10px;
-    margin: 7px 0px;
-    box-sizing: border-box;
-  }
+/* Size and padding for username and password fields */
+input[type=text], input[type=password] {
+  width: 250px;
+  padding: 10px;
+  margin: 7px 0px;
+  box-sizing: border-box;
+}
 
-  /* Style for all buttons */
-  button {
-    background-color: blue;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  /* Pseudo-class hover style for buttons */
-  button:hover {
-    opacity: 0.5;
-  }
-  
-  /* Login cancel button */
-  .register {
-    width: auto;
-    padding: 10px;
-    background-color: tomato;
-    border-radius: 7px;
+/* Style for all buttons */
+button {
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
 
-  }
-  
-  /* Format avatar picture */
-  .avatar-container {
-    color: black;
-    text-align: center;
-    margin: 24px 0 12px 0;
-    padding: 0px;
-  }
-  
-  /* Avatar picture */
-  .avatar {
-    width: 110px;
-    border-radius: 20%;
-    border-style: solid;
-    border-width: thick;
-    border-color: rgba(0, 0, 0, 0.503);
-  }
-  
-  /* Add padding to containers */
-  .container {
-    padding: 16px;
-    color: black;
-  }
-  
-  /* The "Forgot password" text */
-  span.forgot-password {
-    float: right;
-    padding-top: 0px;
-  }
+/* Pseudo-class hover style for buttons */
+button:hover {
+  opacity: 0.5;
+}
 
-  .register-button{
-    width: 30%;
-  }
+/* Login cancel button */
+.register {
+  width: auto;
+  padding: 10px;
+  background-color: tomato;
+  border-radius: 7px;
+
+}
+
+/* Format avatar picture */
+.avatar-container {
+  color: black;
+  text-align: center;
+  margin: 24px 0 12px 0;
+  padding: 0px;
+}
+
+/* Avatar picture */
+.avatar {
+  width: 110px;
+  border-radius: 20%;
+  border-style: solid;
+  border-width: thick;
+  border-color: rgba(0, 0, 0, 0.503);
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  color: black;
+}
+
+/* The "Forgot password" text */
+span.forgot-password {
+  float: right;
+  padding-top: 0px;
+}
+
+.register-button{
+  width: 30%;
+}
+
+.nav-button {
+  font-family: Arial;
+  width:max-content;
+  font-size: 12px;
+  color: white;
+  width:min-content;
+  white-space: nowrap;
+  border-radius: 0%;
+  margin: 0px;
+}
+
+.nav-button:hover {
+  font-family: Arial;
+  font-size: 12px;
+  background-color: lightgrey;
+  color: black;
+  opacity:unset;
+  border-radius: 0%;
+  white-space: nowrap;
+  margin: 0px;
+}

@@ -1,3 +1,16 @@
+---------------
+To ask
+------------
+
+- About Display yes/no integer problem
+- About tetris background justification
+- about greybox justification
+- about email being okay
+- about sql queries being verbatim from the given sql queries
+
+
+
+
 ---------------------
 High Priority
 --------------------
