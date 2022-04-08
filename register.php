@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>New user registration</title>
+        <title>Tetris - New user registration</title>
         <link rel="stylesheet" href="css/styles.css">
     </head>
 
@@ -67,7 +67,7 @@
                         <label for="yes-scores">Yes</label>
                         <input type="radio" id="no-scores" name="display" value="no" required>
                         <label for="no-scores">No</label>
-                        <br><br><b>By creating an account you agree to our <a href="#">Terms & Privacy</a></b><br>
+                        <br><br><b>By creating an account you agree to our <a href="#">Terms and conditions</a></b><br>
                         <button type="submit" class="register-button" name="register">Register</button>
                         </div>
 

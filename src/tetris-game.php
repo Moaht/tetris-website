@@ -165,7 +165,11 @@ let timerId;
       xhttp.open("POST", "leaderboard.php", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.send("score=" + scoreDisplay.innerHTML);
-      document.location.href = 'leaderboard.php';
+
+      // Provides a slight delay so that the server can get the user's score can get to the leaderboard page before it redirects
+      setTimeout(function () {
+        document.location.href = 'leaderboard.php';
+        }, 1000);
 
     }
   }

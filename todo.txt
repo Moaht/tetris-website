@@ -1,39 +1,9 @@
----------------
-To ask
-------------
-
-- About Display yes/no integer problem
-- About tetris background justification
-- about greybox justification
-- about email being okay
-- about sql queries being verbatim from the given sql queries
-
-
-
-
 ---------------------
 High Priority
 --------------------
-- Make navbar links buttons with the names specified in the spec
-
-- Finish login page
-    - Check formatting in CSS - names etc
-    - Add in php and SQL
-    - Cookies + databse
-- Finish registration page
-    - Make it look bootiful and uniform with login page
-    - Add check if user is already logged in and redirect or display null page etc
-    - Add in php and SQL
-    - Cookies + databse
-
-- Finish leaderboards page
-    - Do summink (haven't read the spec yet)
 
 - Finish tetris page
-    - Do summink (haven't read the spec yet)
-
--- TEST SESSIONS AGAINST DIFFERENT USERS WHEN DEPLOYED ON VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
--- CLEAN UP ECHOS etc
+    - Do summink
 
 - Go through and delete entries in CSS style file and if it doesn't break anything: keep it deleted.
 

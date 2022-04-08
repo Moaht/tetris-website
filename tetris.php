@@ -33,7 +33,7 @@ mysqli_close($conn);
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Welcome to TETRIS BITCHES! :></title>
+    <title>Let's play TETRIS!</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/tetris.css">
 

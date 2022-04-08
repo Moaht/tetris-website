@@ -122,7 +122,7 @@ if (!isset($_SESSION['loggedin'])){
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Welcome to TETRIS BITCHES! :></title>
+    <title>Welcome to TETRIS!</title>
     <link rel="stylesheet" href="css/styles.css">
     </head>
 
