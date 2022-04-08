@@ -1,0 +1,15 @@
+@font-face {
+  font-family: Pixel;
+  src: url(../src/fonts/upheavtt.ttf) format("truetype");
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid div {
+  height: 30px;
+  width: 30px;
+
+}

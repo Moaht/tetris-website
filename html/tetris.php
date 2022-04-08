@@ -9,9 +9,34 @@ if (!isset($_SESSION['loggedin'])){
     exit;
 
 // At this point we have found a user session and we set the necessary variables
-} else {
-    echo "found session";
-    }
+}
+
+    $username = $_SESSION['loggedin'];
+
+    // Initialise the database connection
+    require_once '../src/database-config.php'; 
+
+    // Putting user account details into an array called $row
+    $user_lookup = mysqli_query($conn, "SELECT avatar FROM Users WHERE username='$username'");
+
+    $row = mysqli_fetch_array($user_lookup, MYSQLI_ASSOC);
+
+    $avatar = $row['avatar'];
+
+    // ------------------- Setting up hi score display WIP
+
+    // Putting user account details into an array called $row
+    $user_lookup = mysqli_query($conn, "SELECT score FROM Scores WHERE username='$username'");
+
+    $row = mysqli_fetch_array($user_lookup, MYSQLI_NUM);
+
+
+
+
+    
+
+// Closing database connection
+mysqli_close($conn);
 
 ?>
 
@@ -21,6 +46,7 @@ if (!isset($_SESSION['loggedin'])){
     <head>
     <title>Welcome to TETRIS BITCHES! :></title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/tetris.css">
 
     <style>
         @font-face {
@@ -49,7 +75,32 @@ if (!isset($_SESSION['loggedin'])){
             require_once '../src/not-logged-in.php'; 
         }
         ?>
+                <span><div class="next-piece-box">Next piece:<br><br><br><br><br><br><br>dds</div></span>
+                <span><div class="profile-box"><br>
+                <?php
+                    switch ($avatar) {
+                        case "1":
+                            echo '<img src="../images/L.png" alt="Avatar" class="avatar">';
+                            break;
+                        case "2":
+                            echo '<img src="../images/T.png" alt="Avatar" class="avatar">';
+                            break;
+                        default:
+                            echo '<img src="../images/L.png" alt="Avatar" class="avatar">';
+                            break;
+                        }
+                ?>
+                <br>
+                <b>User: <?php echo $username ?> </b>
+                <h3>Score: <span id="score">0</span></h3>
+
+
+                <br><br><br><b>Highest score: <button id="start-button">Start/Pause</button></b></div></span>
+
         </div> 
+
+
     </body>
 
 </html>
+

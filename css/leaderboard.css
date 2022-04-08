@@ -1,0 +1,55 @@
+@font-face {
+  font-family: Pixel;
+  src: url(../src/fonts/upheavtt.ttf) format("truetype");
+}
+
+table, th, td {
+    font-family: "Pixel";
+    border: 2px;
+    border-style: solid;
+    align-self: center;
+    font-size: large;
+    color: ghostwhite;
+    border-color: yellow;
+  }
+  
+  th, td {
+    font-family: "Pixel";
+    border: 2px;
+    border-style: solid;
+    align-self: center;
+    border-spacing: 30px;
+    padding: 8px;
+    font-size: large;
+    border-color: yellow;
+  }
+
+  caption {
+    font-family: "Pixel";
+    color: black;
+    font-size:x-large;
+  }
+
+  /* Grey box that has splash page */
+.scores-box {
+  border-style: dotted;
+  border-color: black;
+  font-family: Arial;
+  background-color: #c7c7c7;
+  width: 300px;
+  color: black;
+  padding: 15px;
+  position: absolute;
+  border-radius: 30px;
+  box-shadow: 5px 5px 8px black;
+  margin-top: -70px;
+  text-align: center;
+}
+
+.scores-table {
+  background-color: blue; 
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: medium;
+}

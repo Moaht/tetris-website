@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "Pixel";
+  font-family: Pixel;
   src: url(../src/fonts/upheavtt.ttf) format("truetype");
 }
 
@@ -93,14 +93,16 @@ div a{
 .welcome-box {
   border-style: dotted;
   border-color: black;
-  font-family: Arial;
+  font-family: "Pixel";
   background-color: #c7c7c7;
   width: 300px;
   color: black;
   padding: 15px;
+  position: absolute;
   border-radius: 30px;
   box-shadow: 5px 5px 8px black;
   margin-top: -70px;
+  font-size: 40px;
 }
 
 /* Grey box that has registration page */
@@ -218,4 +220,38 @@ span.forgot-password {
   border-radius: 0%;
   white-space: nowrap;
   margin: 0px;
+}
+
+/* Grey box */
+.next-piece-box {
+  border-style: dotted;
+  border-color: black;
+  font-family: Arial;
+  background-color: #c7c7c7;
+  width: 200px;
+  color: black;
+  padding: 15px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 8px black;
+  margin-top: -351px;
+  position: absolute;
+  margin-left: 173px;
+
+}
+
+/* Grey box */
+.profile-box {
+  border-style: dotted;
+  border-color: black;
+  font-family: Arial;
+  background-color: #c7c7c7;
+  width: 200px;
+  color: black;
+  padding: 15px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 8px black;
+  margin-top: -351px;
+  position: static;
+  margin-left: -408px;
+
 }

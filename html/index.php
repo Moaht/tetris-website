@@ -22,17 +22,8 @@ if (!isset($_SESSION['loggedin'])){
             if ($_POST["display"] = "yes") {$display = 1;}
             if ($_POST["display"] = "no")  {$display = 0;}
 
-            // Connecting to the database
-            define('DB_SERVER', '127.0.0.1:3306');
-            define('DB_USERNAME', 'root');
-            define('DB_PASSWORD', '123');
-            define('DB_NAME', 'tetris');
-
-            // Checking if database connection was successful - echo error if not
-            $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-            if($conn === false){
-                die("Error: Could not connect to the server " . mysqli_connect_error());
-            }
+            // Initialise the database connection
+            require_once '../src/database-config.php'; 
 
             // Creating variables to check if user and email already exists in the database
             $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
@@ -59,12 +50,7 @@ if (!isset($_SESSION['loggedin'])){
                 $create_account = "INSERT INTO tetris.Users (username, firstname, lastname, password, display, avatar, email) VALUES ('$username', '$firstName', '$lastName', '$password', '$display', '$avatar', '$email')";
                 
                 // Using the opened connection and the query string we just made
-                if (mysqli_query($conn, $create_account)) {
-                echo "New record created successfully";
-                } else {
-                echo "Error: " . $create_account . "<br>" . mysqli_error($conn);
-                }
-
+                mysqli_query($conn, $create_account);
                 // Creating a session for the newly created user
                 $_SESSION['loggedin'] = $username;
                 $_SESSION['start'] = time();
@@ -84,17 +70,8 @@ if (!isset($_SESSION['loggedin'])){
             $username = $_POST["username"];
             $password = $_POST["password"];
 
-            // Connecting to the database
-            define('DB_SERVER', '127.0.0.1:3306');
-            define('DB_USERNAME', 'root');
-            define('DB_PASSWORD', '123');
-            define('DB_NAME', 'tetris');
-
-            // Checking if database connection was successful - echo error if not
-            $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-            if($conn === false){
-                die("Error: Could not connect to the server " . mysqli_connect_error());
-            }
+            // Initialise the database connection
+            require_once '../src/database-config.php'; 
 
             // Checking if user account exists
             $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
@@ -127,13 +104,17 @@ if (!isset($_SESSION['loggedin'])){
 
             // Closing database connection
             mysqli_close($conn);
-        }
+        }      
     }
 
-// At this point we have found a user session and we set the necessary variables
+// At this point we have found a user session and we set the necessary variables or can destroy session
 } else {
-    // echo "found session";
+    // Checks if LOGOUT has been requested and destroys session to complete 'log out'
+    if (isset($_POST['logout'])) {
+        unset($_SESSION['loggedin']);
+        session_destroy();
     }
+}
 
 ?>
 
@@ -143,14 +124,6 @@ if (!isset($_SESSION['loggedin'])){
     <head>
     <title>Welcome to TETRIS BITCHES! :></title>
     <link rel="stylesheet" href="../css/styles.css">
-
-    <style>
-        @font-face {
-            font-family: "Pixel";
-            src: url(../src/fonts/upheavtt.ttf) format("truetype");
-        }
-    </style>
-
     </head>
 
     <body>
