@@ -13,3 +13,10 @@
   width: 30px;
 
 }
+
+/* The div that contains the tetris game */
+.tetris {
+  background-image: url(../images/tetris-grid-bg.png);
+  background-size: auto 600px;
+  height: 600px;
+}

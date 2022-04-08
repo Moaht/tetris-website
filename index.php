@@ -23,7 +23,7 @@ if (!isset($_SESSION['loggedin'])){
             if ($_POST["display"] = "no")  {$display = 0;}
 
             // Initialise the database connection
-            require_once '../src/database-config.php'; 
+            require_once 'src/database-config.php'; 
 
             // Creating variables to check if user and email already exists in the database
             $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
@@ -71,7 +71,7 @@ if (!isset($_SESSION['loggedin'])){
             $password = $_POST["password"];
 
             // Initialise the database connection
-            require_once '../src/database-config.php'; 
+            require_once 'src/database-config.php'; 
 
             // Checking if user account exists
             $user_exists = mysqli_num_rows(mysqli_query($conn, "SELECT username FROM Users WHERE username='$username'"));
@@ -123,14 +123,14 @@ if (!isset($_SESSION['loggedin'])){
 <html>
     <head>
     <title>Welcome to TETRIS BITCHES! :></title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     </head>
 
     <body>
 
         <!-- Top of page menu navigation bar -->
         <?php 
-        require_once '../src/navbar.php'; 
+        require_once 'src/navbar.php'; 
         ?>
 
         <!-- Main DIV -->
@@ -139,9 +139,9 @@ if (!isset($_SESSION['loggedin'])){
         <!-- Checks if user is logged in: if they are, then show welcome page; if not, then show login page -->
         <?php        
         if (isset($_SESSION['loggedin'])){
-            require_once '../src/logged-in.php'; 
+            require_once 'src/logged-in.php'; 
         } else {
-            require_once '../src/not-logged-in.php'; 
+            require_once 'src/not-logged-in.php'; 
         }
         ?>
 

@@ -14,7 +14,7 @@ if (!isset($_SESSION['loggedin'])){
     $username = $_SESSION['loggedin'];
 
     // Initialise the database connection
-    require_once '../src/database-config.php'; 
+    require_once 'src/database-config.php'; 
 
     // Putting user account details into an array called $row
     $user_lookup = mysqli_query($conn, "SELECT avatar FROM Users WHERE username='$username'");
@@ -45,13 +45,13 @@ mysqli_close($conn);
 <html>
     <head>
     <title>Welcome to TETRIS BITCHES! :></title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/tetris.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/tetris.css">
 
     <style>
         @font-face {
             font-family: "Pixel";
-            src: url(../src/fonts/upheavtt.ttf) format("truetype");
+            src: url(src/fonts/upheavtt.ttf) format("truetype");
         }
     </style>
 
@@ -61,7 +61,7 @@ mysqli_close($conn);
 
         <!-- Top of page menu navigation bar -->
         <?php 
-        require_once '../src/navbar.php'; 
+        require_once 'src/navbar.php'; 
         ?>
 
         <!-- Main DIV -->
@@ -70,23 +70,23 @@ mysqli_close($conn);
         <!-- Checks if user is logged in: if they are, then show tetris game; if not, then show login form -->
         <?php        
         if (isset($_SESSION['loggedin'])){
-            require_once '../src/tetris-game.php'; 
+            require_once 'src/tetris-game.php'; 
         } else {
-            require_once '../src/not-logged-in.php'; 
+            require_once 'src/not-logged-in.php'; 
         }
         ?>
-                <span><div class="next-piece-box">Next piece:<br><br><br><br><br><br><br>dds</div></span>
+                <span><div class="next-piece-box">Next piece:<br><br><br><br><br><br><br>.</div></span>
                 <span><div class="profile-box"><br>
                 <?php
                     switch ($avatar) {
                         case "1":
-                            echo '<img src="../images/L.png" alt="Avatar" class="avatar">';
+                            echo '<img src="images/L.png" alt="Avatar" class="avatar">';
                             break;
                         case "2":
-                            echo '<img src="../images/T.png" alt="Avatar" class="avatar">';
+                            echo '<img src="images/T.png" alt="Avatar" class="avatar">';
                             break;
                         default:
-                            echo '<img src="../images/L.png" alt="Avatar" class="avatar">';
+                            echo '<img src="images/L.png" alt="Avatar" class="avatar">';
                             break;
                         }
                 ?>
@@ -95,7 +95,8 @@ mysqli_close($conn);
                 <h3>Score: <span id="score">0</span></h3>
 
 
-                <br><br><br><b>Highest score: <button id="start-button">Start/Pause</button></b></div></span>
+                <br><br><br><b>Highest score: <br><br>
+                <button id="pause-button">Pause</button></b></div></span>
 
         </div> 
 

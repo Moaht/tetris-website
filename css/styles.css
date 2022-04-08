@@ -118,14 +118,7 @@ div a{
   box-shadow: 5px 5px 8px black;
   text-align: left;
   margin-top: -70px;
-}   
-
-/* The div that contains the tetris game */
-.tetris {
-  background-image: url(../images/tetris-grid-bg.png);
-  background-size: auto 600px;
-  height: 600px;
-}
+}  
 
 /* For aligning items to left in registration box */
 .regbox-left{

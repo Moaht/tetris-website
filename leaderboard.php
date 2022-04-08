@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if (isset($_POST['score'])) {
     
     // Initialise the database connection
-    require_once '../src/database-config.php'; 
+    require_once 'src/database-config.php'; 
 
     $username = $_SESSION['loggedin'];
     $score = $_POST['score'];
@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 // Initialise the database connection
-require_once '../src/database-config.php'; 
+require_once 'src/database-config.php'; 
 
 // Putting relevant found user account details into an array called $row
 $scores_lookup = mysqli_query($conn, "SELECT username, score FROM Scores ORDER BY score DESC;");
@@ -53,8 +53,8 @@ mysqli_close($conn);
 <html>
     <head>
     <title>Welcome to TETRIS BITCHES! :></title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/leaderboard.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
 
     </head>
 
@@ -62,7 +62,7 @@ mysqli_close($conn);
 
         <!-- Top of page menu navigation bar -->
         <?php 
-        require_once '../src/navbar.php'; 
+        require_once 'src/navbar.php'; 
         ?>
 
         <!-- Main DIV -->

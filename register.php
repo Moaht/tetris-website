@@ -3,14 +3,14 @@
 
     <head>
         <title>New user registration</title>
-        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
 
     <body>
 
         <!-- Top of page menu navigation bar -->
         <?php 
-        require_once '../src/navbar.php'; 
+        require_once 'src/navbar.php'; 
         ?>
 
         <div class="main">
@@ -55,9 +55,9 @@
                             
                             <label for="avatar"><b>Choose avatar:</b></label><br><br>
                             <input type="radio" id="l-shape" checked="checked" name="avatar" value="1" required>
-                            <label for="l-shape"><img src="../images/L.png" alt="That LLLLovely 'ell' shape" class="avatar"></label>
+                            <label for="l-shape"><img src="images/L.png" alt="That LLLLovely 'ell' shape" class="avatar"></label>
                             <input type="radio" id="t-shape" name="avatar" value="2" required>
-                            <label for="t-shape"><img src="../images/T.png" alt="That TTTerrific 'tee' shape" class="avatar"></label>
+                            <label for="t-shape"><img src="images/T.png" alt="That TTTerrific 'tee' shape" class="avatar"></label>
                         </span>
 
                         <!-- Bottom & centralised section of registration form-->

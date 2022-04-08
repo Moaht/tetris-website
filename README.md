@@ -22,4 +22,3 @@ This is to facilitate simple direct queries outside of the HTML form. If you use
 ask that you enter an email; but for the sake of compliance, I have set it to unrequired. But again,
 due to the nature of the database checks, you cannot have more than one NULL email. Please take 
 this into account.
-Enjoy and welcome to Tetris.
