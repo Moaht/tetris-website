@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggedin'])){
 // Checks if it is necessary to process submitted form data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // Checks if user REGISTRATION has been requested
+    // Checks if user has submitted a SCORE
     if (isset($_POST['score'])) {
     
     // Initialise the database connection
@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 // Initialise the database connection
 require_once 'src/database-config.php'; 
 
-// Putting relevant found user account details into an array called $row
+// Getting all of the scores from the database and putting into an array called $row
 $scores_lookup = mysqli_query($conn, "SELECT username, score FROM Scores ORDER BY score DESC;");
 
 // Closing database connection

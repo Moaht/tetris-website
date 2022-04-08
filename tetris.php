@@ -22,17 +22,6 @@ if (!isset($_SESSION['loggedin'])){
     $row = mysqli_fetch_array($user_lookup, MYSQLI_ASSOC);
 
     $avatar = $row['avatar'];
-
-    // ------------------- Setting up hi score display WIP
-
-    // Putting user account details into an array called $row
-    $user_lookup = mysqli_query($conn, "SELECT score FROM Scores WHERE username='$username'");
-
-    $row = mysqli_fetch_array($user_lookup, MYSQLI_NUM);
-
-
-
-
     
 
 // Closing database connection
@@ -91,12 +80,26 @@ mysqli_close($conn);
                         }
                 ?>
                 <br>
-                <b>User: <?php echo $username ?> </b>
+                <b>User: <?php echo $username; ?> </b>
                 <h3>Score: <span id="score">0</span></h3>
 
 
-                <br><br><br><b>Highest score: <br><br>
-                <button id="pause-button">Pause</button></b></div></span>
+                <br><br><br><b>Highest score: 
+                
+                <?php 
+
+                    // Currently not working ===================================
+
+                    // Initialise the database connection
+                    require_once 'src/database-config.php'; 
+                    // Putting user account details into an array called $row
+                    $userScoreLookUp = mysqli_query($conn, "SELECT username, score FROM Scores WHERE username='$username' ORDER BY score DESC");
+                    $row = mysqli_fetch_array($userScoreLookUp, MYSQLI_ASSOC);
+                    echo $row['score'];
+                ?>
+                
+                <br><br>
+                <button onclick="style.display = 'none'" id="pause-button">Start the game</button></b></div></span>
 
         </div> 
 
