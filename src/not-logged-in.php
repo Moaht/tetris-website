@@ -5,7 +5,7 @@
 
     <!-- Shows user avatar. Not completely implemented yet. -->
     <div class="avatar-container">
-        <img src="../images/T.png" alt="Avatar" class="avatar"><br>
+        <img src="../images/avatar-T.png" alt="Avatar" class="avatar"><br>
         <br>You're not signed in! <br><br>
 
         <!-- Checks username and email and displays appropriate error message -->

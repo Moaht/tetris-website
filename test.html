@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <body>
+      
+
+        <script>
+
+        const ages = [3, 10, 25, 20];
+
+        function checkAdult(age) {
+            return age > 18;
+        }
+
+
+        ages.some(checkAdult);
+
+
+        console.log();
+
+
+
+// Add event listener on keydown
+document.addEventListener('keydown', (event) => {
+
+
+    // Pause the game
+    if (event.code == "Enter"){
+    }
+
+    if (event.code == "KeyZ"){
+        alert(`Key code value: ${event.code}`);
+    }
+
+    if (event.code == "KeyX"){
+        alert(`Key code value: ${event.code}`);
+    }
+
+    // Snap piece to bottom
+    if (event.code == "ArrowUp"){
+        alert(`Key code value: ${event.code}`);
+    }
+
+    // Move piece down
+    if (event.code == "ArrowDown"){
+        alert(`Key code value: ${event.code}`);
+    }
+
+    // Move piece left
+    if (event.code == "ArrowLeft"){
+        alert(`Key code value: ${event.code}`);
+    }
+
+    // Move piece right
+    if (event.code == "ArrowRight"){
+        alert(`Key code value: ${event.code}`);
+    }
+
+    // // Reserved in case I want to implement 'saving pieces' functionality
+    // if (event.code == "Space"){
+    // }
+
+
+}, false);
+
+
+
+
+
+        </script>
+
+    </body>
+
+</html>

@@ -69,13 +69,13 @@ mysqli_close($conn);
                 <?php
                     switch ($avatar) {
                         case "1":
-                            echo '<img src="images/L.png" alt="Avatar" class="avatar">';
+                            echo '<img src="images/avatar-L.png" alt="Avatar" class="avatar">';
                             break;
                         case "2":
-                            echo '<img src="images/T.png" alt="Avatar" class="avatar">';
+                            echo '<img src="images/avatar-T.png" alt="Avatar" class="avatar">';
                             break;
                         default:
-                            echo '<img src="images/L.png" alt="Avatar" class="avatar">';
+                            echo '<img src="images/avatar-L.png" alt="Avatar" class="avatar">';
                             break;
                         }
                 ?>
@@ -99,7 +99,7 @@ mysqli_close($conn);
                 ?>
                 
                 <br><br>
-                <button onclick="style.display = 'none'" id="pause-button">Start the game</button></b></div></span>
+                <button id="pause-button">Start the game</button></b></div></span>
 
         </div> 
 
