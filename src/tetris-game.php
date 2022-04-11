@@ -171,13 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logic to make tetrimino stop moving due to obstructions, also handles scores and end of play
     function stopMovement() {
 
-        if (tetrominos.get(activePiece).some(index => gridSquares[blockPosition + index].classList.contains('obstruction'))){
-            clear();
-            blockPosition -= 10;
-            show();
-            // Change the active falling piece status to "obstruction" to make it inactive
-            tetrominos.get(activePiece).forEach(index => gridSquares[blockPosition + index].classList.add('obstruction'))
+        // if (tetrominos.get(activePiece).some(index => gridSquares[blockPosition + index].classList.contains('obstruction'))){
+        //     clear();
+        //     blockPosition -= 10;
+        //     show();
+        //     // Change the active falling piece status to "obstruction" to make it inactive
+        //     tetrominos.get(activePiece).forEach(index => gridSquares[blockPosition + index].classList.add('obstruction'))
         
+        if(tetrominos.get(activePiece).some(index => gridSquares[blockPosition + index + gridWidth].classList.contains('obstruction'))) {
+            tetrominos.get(activePiece).forEach(index => gridSquares[blockPosition + index].classList.add('obstruction'))
             //start a new tetromino falling
             activePiece = nextPiece;
             if (bag.length < 1){
